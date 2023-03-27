@@ -243,7 +243,7 @@ public abstract class OpenAIClientAbstract : IDisposable
 
         try
         {
-            using HttpContent content = new StringContent(requestBody, Encoding.UTF8, MediaTypeNames.Application.Json);
+            using HttpContent content = new StringContent(requestBody, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await this.HTTPClient.PostAsync(url, content, cancellationToken);
 
             if (response == null)

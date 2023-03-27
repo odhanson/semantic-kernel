@@ -77,7 +77,7 @@ public sealed class FunctionsView
 
         if (sf && nf)
         {
-            throw new AmbiguousImplementationException("There are 2 functions with the same name, one native and one semantic");
+            throw new System.NotImplementedException("There are 2 functions with the same name, one native and one semantic");
         }
 
         return sf;
@@ -101,7 +101,7 @@ public sealed class FunctionsView
 
         if (sf && nf)
         {
-            throw new AmbiguousImplementationException("There are 2 functions with the same name, one native and one semantic");
+            throw new System.NotImplementedException("There are 2 functions with the same name, one native and one semantic");
         }
 
         return nf;
