@@ -6,9 +6,10 @@
   <Import Project="$(RepoRoot)/dotnet/nuget/nuget-package.props" />
 
   <PropertyGroup>
+    <LangVersion>latest</LangVersion>
     <AssemblyName>Microsoft.SemanticKernel</AssemblyName>
     <RootNamespace>Microsoft.SemanticKernel</RootNamespace>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 

@@ -136,7 +136,7 @@ public static class SemanticTextPartitioner
 
     private static List<string> InternalSplitPlaintextLines(string text, int maxTokensPerLine, bool trim)
     {
-        text = text.Replace("\r\n", "\n", StringComparison.OrdinalIgnoreCase);
+        text = text.ReplaceWithOptions("\r\n", "\n", StringComparison.OrdinalIgnoreCase);
 
         var splitOptions = new List<List<char>?>
         {
@@ -176,7 +176,7 @@ public static class SemanticTextPartitioner
 
     private static List<string> InternalSplitMarkdownLines(string text, int maxTokensPerLine, bool trim)
     {
-        text = text.Replace("\r\n", "\n", StringComparison.OrdinalIgnoreCase);
+        text = text.ReplaceWithOptions("\r\n", "\n", StringComparison.OrdinalIgnoreCase);
 
         var splitOptions = new List<List<char>?>
         {
