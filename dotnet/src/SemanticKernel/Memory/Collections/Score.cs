@@ -46,7 +46,7 @@ internal struct Score : IComparable<Score>, IEquatable<Score>
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(this.Value);
+        return new { this.Value }.GetHashCode();
     }
 
     public static bool operator ==(Score left, Score right)

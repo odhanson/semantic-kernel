@@ -30,24 +30,6 @@ public class FileIOSkill
     [SKFunctionInput(Description = "Source file")]
     public Task<string?> ReadAsync(string path)
     {
-        return File.ReadAllTextAsync(path);
-    }
-
-    /// <summary>
-    /// Write a file
-    /// </summary>
-    /// <example>
-    /// {{file.writeAsync}}
-    /// </example>
-    /// <param name="context">
-    /// Contains the 'path' for the Destination file and 'content' of the file to write.
-    /// </param>
-    /// <returns> An awaitable task </returns>
-    [SKFunction("Write a file")]
-    [SKFunctionContextParameter(Name = "path", Description = "Destination file")]
-    [SKFunctionContextParameter(Name = "content", Description = "File content")]
-    public Task WriteAsync(SKContext context)
-    {
-        return File.WriteAllTextAsync(context["path"], context["content"]);
+        return Task.FromResult(File.ReadAllText(path));
     }
 }

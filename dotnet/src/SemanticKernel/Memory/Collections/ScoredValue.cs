@@ -59,7 +59,7 @@ internal struct ScoredValue<T> : IComparable<ScoredValue<T>>, IEquatable<ScoredV
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(this.Value, this.Score);
+        return new { this.Value, this.Score }.GetHashCode();
     }
 
     public static bool operator ==(ScoredValue<T> left, ScoredValue<T> right)

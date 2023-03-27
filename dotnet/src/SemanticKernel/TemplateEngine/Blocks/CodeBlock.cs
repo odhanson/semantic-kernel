@@ -139,7 +139,7 @@ internal class CodeBlock : Block, ICodeRendering
     private bool GetFunctionFromSkillCollection(
         IReadOnlySkillCollection skills,
         FunctionIdBlock fBlock,
-        [NotNullWhen(true)] out ISKFunction? function)
+        out ISKFunction? function)
     {
         // Function in the global skill
         if (string.IsNullOrEmpty(fBlock.SkillName) && skills.HasFunction(fBlock.FunctionName))
