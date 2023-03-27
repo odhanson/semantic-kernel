@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
 using Microsoft.Extensions.Logging;
@@ -206,7 +207,23 @@ internal class FunctionFlowRunner
                                 }
                                 else
                                 {
-                                    functionVariables.Set(attr.Name, attr.InnerText);
+                                    var innerText = attr.InnerText;
+                                    // replace inner variables with values
+                                    if (attr.InnerText.Contains("$"))
+                                    {
+                                        var attrValue = attr.InnerText;
+                                        Regex regex = new Regex(@"(\$[\w_]+)");
+                                        MatchCollection matches = regex.Matches(attr.InnerText);
+                                        foreach (Match match in matches)
+                                        {
+                                            if (context.Variables.Get(match.Value.Substring(1), out var variableReplacement))
+                                            {
+                                                innerText = innerText.Replace(match.Value, variableReplacement);
+                                            }
+                                        }
+                                    }
+
+                                    functionVariables.Set(attr.Name, innerText);
                                 }
                             }
                         }

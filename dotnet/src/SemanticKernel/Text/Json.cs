@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 
+using System.IO;
 using System.Text.Json;
 
 namespace Microsoft.SemanticKernel.Text;
@@ -30,7 +31,8 @@ internal static class Json
         AllowTrailingCommas = true,
         PropertyNameCaseInsensitive = true,
         ReadCommentHandling = JsonCommentHandling.Skip,
+        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+        // Encoder = new System.Text.Json.Serialization.JsonTextEncoder(new StringWriter() { NewLine = "\n"})
     };
-
     #endregion
 }

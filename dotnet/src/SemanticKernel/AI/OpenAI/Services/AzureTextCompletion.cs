@@ -83,6 +83,8 @@ public sealed class AzureTextCompletion : AzureOpenAIClientAbstract, ITextComple
             Stop = requestSettings.StopSequences is { Count: > 0 } ? requestSettings.StopSequences : null,
         });
 
+        requestBody = requestBody.Replace("\\r\\n", "\\n");
+
         return await this.ExecuteTextCompleteRequestAsync(url, requestBody, cancellationToken);
     }
 

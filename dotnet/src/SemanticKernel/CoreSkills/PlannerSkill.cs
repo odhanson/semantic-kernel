@@ -115,8 +115,11 @@ public class PlannerSkill
     /// </summary>
     /// <param name="kernel"> The kernel to use </param>
     /// <param name="maxTokens"> The maximum number of tokens to use for the semantic functions </param>
-    public PlannerSkill(IKernel kernel, int maxTokens = 1024)
+    /// <param name="promptTemplate">The customized FunctionFlow prompt. Use null for default.</param>
+    public PlannerSkill(IKernel kernel, int maxTokens = 1024, string? promptTemplate = null)
     {
+        promptTemplate ??= SemanticFunctionConstants.FunctionFlowFunctionDefinition;
+
         this._functionFlowRunner = new(kernel);
 
         this._bucketFunction = kernel.CreateSemanticFunction(
@@ -126,7 +129,7 @@ public class PlannerSkill
             temperature: 0.0);
 
         this._functionFlowFunction = kernel.CreateSemanticFunction(
-            promptTemplate: SemanticFunctionConstants.FunctionFlowFunctionDefinition,
+            promptTemplate,
             skillName: RestrictedSkillName,
             description: "Given a request or command or goal generate a step by step plan to " +
                          "fulfill the request using functions. This ability is also known as decision making and function flow",
