@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using static Microsoft.SemanticKernel.HttpStatusCodeExtension;
 
 namespace Microsoft.SemanticKernel.Reliability;
 
@@ -53,12 +54,12 @@ public sealed class HttpRetryConfig
     /// <summary>
     /// List of status codes that should be retried.
     /// </summary>
-    public List<HttpStatusCode> RetryableStatusCodes { get; set; } = new()
+    public List<int> RetryableStatusCodes { get; set; } = new()
     {
-        HttpStatusCode.RequestTimeout,
-        HttpStatusCode.ServiceUnavailable,
-        HttpStatusCode.GatewayTimeout,
-        HttpStatusCode.TooManyRequests
+        (int)HttpStatusCode.RequestTimeout,
+        (int)HttpStatusCode.ServiceUnavailable,
+        (int)HttpStatusCode.GatewayTimeout,
+        (int)ExtendedHttpStatusCode.TooManyRequests
     };
 
     /// <summary>

@@ -180,7 +180,7 @@ public sealed class DefaultHttpRetryHandler : DelegatingHandler
 
     private bool ShouldRetry(HttpStatusCode statusCode)
     {
-        return this._config.RetryableStatusCodes.Contains(statusCode);
+        return this._config.RetryableStatusCodes.Contains((int)statusCode);
     }
 
     private bool ShouldRetry(Exception? exception)
